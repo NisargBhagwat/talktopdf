@@ -18,7 +18,7 @@ export const ChatContainer: React.FC<ChatContainerProps> = ({ chats }) => {
 
   return (
     <div ref={chatContainerRef} className="overflow-y-auto hide-scrollbar">
-      {chats.reverse().map((it) => (
+      {chats.map((it) => (
         <ChatMessage key={it.id} query={it.query} response={it.response} />
       ))}
     </div>

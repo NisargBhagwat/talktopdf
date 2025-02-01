@@ -17,12 +17,18 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
         </div>
       </div>
       <div className="pt-5">
-        <div
-          className="leading-[26px] bg-white/5 px-5 py-[10px] max-w-[500px] rounded-[20px]"
-          dangerouslySetInnerHTML={{
-            __html: response.replace(/\n/g, "<br />"),
-          }}
-        />
+        {response === "" ? (
+          <div className="leading-[26px] bg-white/5 px-5 py-[10px] max-w-[500px] rounded-[20px]">
+            Loading...
+          </div>
+        ) : (
+          <div
+            className="leading-[26px] bg-white/5 px-5 py-[10px] max-w-[500px] rounded-[20px]"
+            dangerouslySetInnerHTML={{
+              __html: response.replace(/\n/g, "<br />"),
+            }}
+          />
+        )}
       </div>
     </div>
   );

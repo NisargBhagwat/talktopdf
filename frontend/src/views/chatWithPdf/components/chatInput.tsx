@@ -14,6 +14,13 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   setQuery,
   onSubmit,
 }) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && query.trim() !== "") {
+      event.preventDefault(); // Prevent form submission (if wrapped in a form)
+      onSubmit();
+    }
+  };
+
   return (
     <div className="flex gap-5">
       <Input
@@ -22,6 +29,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Ask your question... "
         className="w-full bg-black h-[50px]"
+        onKeyDown={handleKeyDown} // Handle Enter key
       />
       <Button className="h-[50px]" onClick={onSubmit}>
         <EnterIcon />
