@@ -226,7 +226,7 @@ export class AuthService {
       httpOnly: true,
       secure: false,
       maxAge: 24 * 60 * 60 * 1000, // 1 day
-      sameSite: "none"
+      sameSite: "lax"
     });
 
     res.cookie(REFERESH_TOKEN, refreshToken, {
@@ -234,7 +234,7 @@ export class AuthService {
       httpOnly: true,
       secure: false,
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-      sameSite: "none"
+      sameSite: "lax"
     });
   };
 
