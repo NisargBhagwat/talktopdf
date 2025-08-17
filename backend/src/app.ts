@@ -74,8 +74,18 @@ export class App {
   }
 
   private initializeMiddlewares() {
+    const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [];
     this.app.use(helmet()); //Adds security-related HTTP headers
-    this.app.use(cors({ credentials: true, origin: true })); //Enable CORS for handling cross-origin requests
+    this.app.use(cors({
+      origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, origin); // allow request
+        } else {
+          callback(new Error("Not allowed by CORS")); // block others
+        }
+      },
+      credentials: true
+    }));
     this.app.use(hpp()); // Prevents HTTP Parameter Pollution attacks
     this.app.use(limiter); // Apply rate limiting to all routes
     this.app.use((req, res, next) => {
