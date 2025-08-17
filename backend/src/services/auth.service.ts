@@ -224,7 +224,7 @@ export class AuthService {
     // Set cookies with httpOnly flag for security
     res.cookie(ACCESS_TOKEN, accessToken, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       sameSite: "none"
     });
@@ -232,7 +232,7 @@ export class AuthService {
     res.cookie(REFERESH_TOKEN, refreshToken, {
       // Here you would typically generate a JWT token
       httpOnly: true,
-      secure: true,
+      secure: false,
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       sameSite: "none"
     });
